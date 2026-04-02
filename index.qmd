@@ -7,6 +7,9 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/olivia-roberts-762501275/
+    - icon: scholar
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=tAR85_wAAAAJ&hl=en
     - icon: envelope
       text: Email
       href: mailto:oroberts@umich.edu
