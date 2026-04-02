@@ -3,6 +3,16 @@
 ---
 title: "Olivia Kaitlyn Roberts"
 image: media/headshot.JPG
+toc: false
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/olivia-roberts-762501275/
+    - text: Email
+      href: oroberts@umich.edu
 ---
 
 About me.
