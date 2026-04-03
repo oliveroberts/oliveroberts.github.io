@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - googlef635b60f6d83e826.html
 
 website:
   title: "Olivia Roberts"
