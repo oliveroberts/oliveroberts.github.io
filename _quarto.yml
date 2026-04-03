@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Olivia Roberts"
+  description: "Personal website of Olivia Kaitlyn Roberts (Olivia K Roberts)."
   navbar:
     left:
       - href: index.qmd
