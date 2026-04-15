@@ -12,7 +12,7 @@ website:
       - href: index.qmd
         text: Home
         
-      - href: tobacco-use.qmd
+      - href: tobacco-project.qmd
         text: Tobacco Use Project
         
       - href: about-data.qmd

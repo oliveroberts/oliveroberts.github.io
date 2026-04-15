@@ -2,15 +2,29 @@
 title: "Tobacco Use Project"
 ---
 
-## Tobacco Use Dashboard
+## Introduction
 
-This project analyzes tobacco use trends using NHIS data.
+This project analyzes tobacco use trends using NHIS data. Provide background on your dataset and research question.
+
+## Methods
+
+Briefly discuss how the data was acquired and cleaned, and the tools you used for data exploration (further details should be provided on another page of your website).
+
+## Results
+
+Provide final, publication-ready tables and figures from your analysis, including at least one interactive graphic. Make separate subsections as needed.
 
 ### Interactive Dashboard
 
-<iframe 
-  src="https://YOUR_USERNAME.shinyapps.io/tobacco-dashboard"
-  width="100%"
-  height="900px"
-  style="border:none;">
-</iframe>
+<div style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);">
+  <iframe 
+    src="https://oliveroberts.shinyapps.io/biostat620-final-project/"
+    style="width: 100%; height: 90vh; border: none;">
+  </iframe>
+</div>
+
+Note: If a plot is not loading for a certain selection criteria, try deleting the Nicotine/Product use criteria and adding it again. This dashboard can also be found separately on [this website](https://oliveroberts.shinyapps.io/biostat620-final-project/).
+
+## Conclusion and Summary
+
+A brief recap where you describe your findings.

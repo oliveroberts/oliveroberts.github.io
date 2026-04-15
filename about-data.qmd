@@ -2,4 +2,9 @@
 title: "About the Data"
 ---
 
-## data
+Describe the raw data in detail and every step you took to prepare it for your analysis. Describe how the data was acquired, processed, and explored. This is also where you should include any exploratory plots.
+
+
+In addition to submitting a written report, you will prepare a brief (10 minute) presentation on your project. The sections in your presentation should be the same as the sections of your report. Strong emphasis should be put on visualizations in the presentation. Also, you can optionally demo your website during the presentation. 
+
+In structuring your presentation, make sure to justify to your audience why you made the decisions you did. If you tried/considered multiple methods of data analysis, show some motivation for why you made the eventual decision. All figures that you show should be sufficiently explained to the audience. You should explain why the figures that you show support your conclusions. Design your slides and speech for clarity.
