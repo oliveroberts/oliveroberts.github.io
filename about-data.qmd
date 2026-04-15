@@ -6,7 +6,7 @@ The data used in this analysis come from the National Health Interview Survey (N
 
 ### Variable Creation and Data Cleaning
 
-Five tobacco/nicotine product categories were defined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two binary indicators were created: ever use (respondents who reported ever using the product), and current use (respondents who reported ever use and current use every day or some days).
+Five tobacco/nicotine product categories were defined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two binary indicators were created: ever use (respondents who reported ever using the product), and current use (respondents who reported ever use and current use every day or some days). Current use of cigarettes or cigars only includes participants who used 100 or more cigarettes or cigars in their lifetime, respectively, as is standard in tobacco analyses.
 
 Demographic variables were categorized into age groups (18–24, 25–34, 35–54, and 55+), sex (male or female), and race & ethnicity (Hispanic, Non-Hispanic White, Non-Hispanic Black, Non-Hispanic Asian, and Non-Hispanic Other).
 

@@ -14,7 +14,7 @@ The [National Health Interview Survey](https://www.cdc.gov/nchs/nhis/index.html)
 
 NHIS data is publicly available, and can be accessed on the [CDC Website](https://www.cdc.gov/nchs/nhis/documentation/index.html#:~:text=You%20can%20find%20NHIS%20data%20by%20year,Center%20for%20Health%20Statistics%20Research%20Data%20Center.). NHIS data from 2012-2022 were obtained from a IPUMS harmonized database. 
 
-Five tobacco and nicotine product categories were examined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two use states were defined, derived from tobacco use variables in the dataset. Ever use was defined as respondents who reported ever using the product, while current use was defined as respondents who reported ever use and current use (every day or some days).
+Five tobacco and nicotine product categories were examined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two use states were defined, derived from tobacco use variables in the dataset. Ever use was defined as respondents who reported ever using the product, while current use was defined as respondents who reported ever use and current use (every day or some days). Current use of cigarettes or cigars only includes participants who used 100 or more cigarettes or cigars in their lifetime, respectively, as is standard in tobacco analyses.
 
 Sociodemographic variables were also defined and categorized. Age groups were categorized into 18-24, 25-34, 35-54, and >55 years. Sex was classified as male or female. Race & Ethnicity was classified into Hispanic, non-Hispanic White, non-Hispanic Black, non-Hispanic Asian, and non-Hispanic Other
 
@@ -58,7 +58,7 @@ Differences in pipe use prevalence by race and ethnicty are a bit harder to disc
 
 ### Interactive Dashboard
 
-Use the dashboard below to examine ever and current use of various tobacco/nicotine products by sex, age group, and race & ethnicity from 2012-2022, and to compare product use between two selected groups from 2012-2022.
+Use the dashboard below to examine ever and current use of various tobacco/nicotine products by sex, age group, and race & ethnicity from 2012-2022, and to compare product use between two selected groups from 2012-2022. Note that the data for this integrated dashboard has been subset to 50,000 observations to improve performance.
 
 <div style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);">
   <iframe 
