@@ -124,6 +124,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
+  <li><a href="#trends-in-tobacco-use" id="toc-trends-in-tobacco-use" class="nav-link" data-scroll-target="#trends-in-tobacco-use">Trends in Tobacco Use</a></li>
+  <li><a href="#differences-by-age" id="toc-differences-by-age" class="nav-link" data-scroll-target="#differences-by-age">Differences by Age</a></li>
+  <li><a href="#differences-by-sex" id="toc-differences-by-sex" class="nav-link" data-scroll-target="#differences-by-sex">Differences by Sex</a></li>
+  <li><a href="#differences-by-race-and-ethnicity" id="toc-differences-by-race-and-ethnicity" class="nav-link" data-scroll-target="#differences-by-race-and-ethnicity">Differences by Race and Ethnicity</a></li>
   <li><a href="#interactive-dashboard" id="toc-interactive-dashboard" class="nav-link" data-scroll-target="#interactive-dashboard">Interactive Dashboard</a></li>
   </ul></li>
   <li><a href="#conclusion-and-summary" id="toc-conclusion-and-summary" class="nav-link" data-scroll-target="#conclusion-and-summary">Conclusion and Summary</a></li>
@@ -154,17 +158,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This project analyzes tobacco use trends using NHIS data. Provide background on your dataset and research question. P</p>
+<p>The tobacco and nicotine product landscape is continuously evolving as new products are developed, advertised, and sold to consumers. Tobacco and nicotine products - including cigarettes, electronic cigarettes (e-cigarettes), cigars, smokeless tobacco, and pipes - pose varying health risks to consumers, including lung and oral cancers, cardiovascular risks, and oral health risks.</p>
+<p>The last decade has seen many changes in the use of different tobacco products. Sales of e-cigarettes increased substantially beginning in 2017, especially among young adults. Although promoted as a harm reduction and cigarette cessation tool, there remain concerns that these products may appeal to those that may not otherwise use tobacco or nicotine products, or lead to subsequent cigarette use. More recently, beginning around 2021 and 2022, sales of nicotine pouches (a type of smokeless tobacco product) increased. Different sociodemographic groups of the population may use tobacco and nicotine products at varying rates, leading to disparities in health outcomes by sex, race, and age group.</p>
+<p>The <a href="https://www.cdc.gov/nchs/nhis/index.html">National Health Interview Survey</a> (NHIS), conducted annually by the National Center for Health Statistics (NCHS) and the Centers for Disease Control and Prevention (CDC), is a nationally representative, cross-sectional survey on the U.S. civilian non-institutionalized population. Using a complex survey design, NHIS collects data on many health behaviors, including measures of tobacco use among different subgroups of the population. Since NHIS is nationally representative, it can be used to estimate prevalence of tobacco and nicotine product use in the U.S. population as a whole by sociodemographic group. This project aims to assess how the prevalence of tobacco and nicotine product use has changed over time in the U.S. from 2012 to 2022 by sex, race and ethnicity, and age group. Monitoring trends in different tobacco and nicotine product use over time is necessary for understanding the changing public health impacts of these products by sociodemograhpic group and informing public health interventions as tobacco and nicotine products continue to evolve.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Briefly discuss how the data was acquired and cleaned, and the tools you used for data exploration (further details should be provided on another page of your website).</p>
+<p>NHIS data is publicly available, and can be accessed on the <a href="https://www.cdc.gov/nchs/nhis/documentation/index.html#:~:text=You%20can%20find%20NHIS%20data%20by%20year,Center%20for%20Health%20Statistics%20Research%20Data%20Center.">CDC Website</a>. NHIS data from 2012-2022 were obtained from a IPUMS harmonized database.</p>
+<p>Five tobacco and nicotine product categories were examined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two use states were defined, derived from tobacco use variables in the dataset. Ever use was defined as respondents who reported ever using the product, while current use was defined as respondents who reported ever use and current use (every day or some days).</p>
+<p>Sociodemographic variables were also defined and categorized. Age groups were categorized into 18-24, 25-34, 35-54, and &gt;55 years. Sex was classified as male or female. Race &amp; Ethnicity was classified into Hispanic, non-Hispanic White, non-Hispanic Black, non-Hispanic Asian, and non-Hispanic Other</p>
+<p>The analysis accounted for the complex survey design of NHIS by using survey weights, strata, and primary sampling units. The final dataset included the defined tobacco use variables and was restricted to those 18 years or older with non-missing data on age, sex, race/ethnicity, and survey design variables. The final dataset used for this analysis had 596,023 observations.</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>Provide final, publication-ready tables and figures from your analysis, including at least one interactive graphic. Make separate subsections as needed.</p>
+<p>The results of this analysis was synthesized into one interactive dashboard of tobacco use trends by sociodemographic group from 2012-2022. These results are nationally representative, since they account for complex survey design.</p>
+<section id="trends-in-tobacco-use" class="level3">
+<h3 class="anchored" data-anchor-id="trends-in-tobacco-use">Trends in Tobacco Use</h3>
+</section>
+<section id="differences-by-age" class="level3">
+<h3 class="anchored" data-anchor-id="differences-by-age">Differences by Age</h3>
+</section>
+<section id="differences-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="differences-by-sex">Differences by Sex</h3>
+</section>
+<section id="differences-by-race-and-ethnicity" class="level3">
+<h3 class="anchored" data-anchor-id="differences-by-race-and-ethnicity">Differences by Race and Ethnicity</h3>
+</section>
 <section id="interactive-dashboard" class="level3">
 <h3 class="anchored" data-anchor-id="interactive-dashboard">Interactive Dashboard</h3>
+<p>Use the dashboard below to examine ever and current use of various tobacco/nicotine products by sex, age group, and race &amp; ethnicity from 2012-2022, and to compare product use between two selected groups from 2012-2022.</p>
 <div style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);">
 <p><iframe src="https://oliveroberts.shinyapps.io/biostat620-final-project/" style="width: 100%; height: 90vh; border: none;"> </iframe></p>
 </div>
@@ -173,7 +195,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="conclusion-and-summary" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-and-summary">Conclusion and Summary</h2>
-<p>A brief recap where you describe your findings.</p>
+<p>This analysis of NHIS tobacco use data from 2012 to 2022 demonstrates shifts in the prevalence of different tobacco and nicotine use patterns in the United States. While cigarette use has declined, there has been a significant rise in e-cigarette use, especially among younger adults.</p>
+<p>Tobacco and nicotine product use is unevenly distributed across sociodemogrpahic groups. *Age-related differences, disparities by sex and race/ethnicity.</p>
+<p>A decline in cigarette use is promising for public health, but an increase in alternative tobacco and nicotine products poses new challenges for tobacco control efforts. Targeted interventions accounting for disparities between groups is necessary to reduce tobacco-related harm and subsequent deaths. Continued monitoring of these trends is necessary as the tobacco product landscape continues to change. Future research could examine transitions between products, dual use, and the recent emergence of nicotine pouch products.</p>
 
 
 </section>

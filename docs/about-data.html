@@ -115,8 +115,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#variable-creation-and-data-cleaning" id="toc-variable-creation-and-data-cleaning" class="nav-link active" data-scroll-target="#variable-creation-and-data-cleaning">Variable Creation and Data Cleaning</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a></li>
+  <li><a href="#interactive-exploration" id="toc-interactive-exploration" class="nav-link" data-scroll-target="#interactive-exploration">Interactive Exploration</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -140,11 +148,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Describe the raw data in detail and every step you took to prepare it for your analysis. Describe how the data was acquired, processed, and explored. This is also where you should include any exploratory plots.</p>
-<p>In addition to submitting a written report, you will prepare a brief (10 minute) presentation on your project. The sections in your presentation should be the same as the sections of your report. Strong emphasis should be put on visualizations in the presentation. Also, you can optionally demo your website during the presentation.</p>
-<p>In structuring your presentation, make sure to justify to your audience why you made the decisions you did. If you tried/considered multiple methods of data analysis, show some motivation for why you made the eventual decision. All figures that you show should be sufficiently explained to the audience. You should explain why the figures that you show support your conclusions. Design your slides and speech for clarity.</p>
+<p>The data used in this analysis come from the National Health Interview Survey (NHIS), a nationally representative, cross-sectional household survey conducted annually by the National Center for Health Statistics. Public-use NHIS data files for survey years 2012–2022 are from the Integrated Public Use Microdata Series (IPUMS), which harmonizes variable names and coding across survey years for longitudinal analysis. The dataset includes demographic characteristics, tobacco use variables, and complex survey design variables.</p>
+<section id="variable-creation-and-data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="variable-creation-and-data-cleaning">Variable Creation and Data Cleaning</h3>
+<p>Five tobacco/nicotine product categories were defined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two binary indicators were created: ever use (respondents who reported ever using the product), and current use (respondents who reported ever use and current use every day or some days).</p>
+<p>Demographic variables were categorized into age groups (18–24, 25–34, 35–54, and 55+), sex (male or female), and race &amp; ethnicity (Hispanic, Non-Hispanic White, Non-Hispanic Black, Non-Hispanic Asian, and Non-Hispanic Other).</p>
+<p>To account for the NHIS complex sampling design, the following variables were used: Primary Sampling Unit (PSU), Stratification variable (STRATA), and Sampling weights (SAMPWEIGHT).These were used to construct a survey design object using the survey package to find nationally representative prevalence results.</p>
+<p>The dataset was restricted to adults aged 18 years and older. Observations with missing values in key variables (age, sex, race/ethnicity, survey design variables, or survey year) were excluded. The cleaned dataset was saved as an RDS file for reproducibility and efficient reuse.</p>
+</section>
+<section id="data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="data-exploration">Data Exploration</h3>
+<p>Exploratory data analysis was conducted to assess trends in tobacco use over time across demographic groups.</p>
+<ol type="1">
+<li>Current cigarette use over time</li>
+</ol>
+<p>Overall cigarette use prevalence declined rapidly over this period from almost 20% to 10%, while e-cigarette use has increased. Cigar, smokeless tobacco, and pipe use has remained relatively stable over time. The NHIS survey did not ask about e-cigarette use until 2014 and pipe and cigar use until 2015.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about-data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Current e-cigarette use by age group</li>
+</ol>
+<p>Current e-cigarette use prevalence increased over time for every age group except the 55+ age group, where prevalence remained relatively steady. Prevalence of e-cigarette use is higher for each larger age group. E-cigarette use was not included in the NHIS survey until 2014.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about-data_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Current cigarette use by race &amp; ethnicity</li>
+</ol>
+<p>Current cigarette use prevalence has declined over time for every race and ethnicity group. Non-Hispanic Asian and Hispanic individuals are less likely to use cigarettes than other groups. Non-Hispanic Other individuals have been the most likely to use cigarettes overall, but the prevalence of use among this age group has declined and in 2022 was similar to use prevalence in non-Hispanic White and non-Hispanic Black individuals. This group may show varying rates because of a lower sample size.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about-data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-exploration">Interactive Exploration</h3>
+<p>A shiny dashboard was created for the main analysis to enable the interactive exploration of tobacco use trends across products and demographic subgroups. Users can select tobacco product types, stratify by age, sex, or race &amp; ethnicity, and compare trends between two specifically-selected groups.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -2,9 +2,176 @@
 title: "About the Data"
 ---
 
-Describe the raw data in detail and every step you took to prepare it for your analysis. Describe how the data was acquired, processed, and explored. This is also where you should include any exploratory plots.
+The data used in this analysis come from the National Health Interview Survey (NHIS), a nationally representative, cross-sectional household survey conducted annually by the National Center for Health Statistics. Public-use NHIS data files for survey years 2012–2022 are from the Integrated Public Use Microdata Series (IPUMS), which harmonizes variable names and coding across survey years for longitudinal analysis. The dataset includes demographic characteristics, tobacco use variables, and complex survey design variables.
 
+### Variable Creation and Data Cleaning
 
-In addition to submitting a written report, you will prepare a brief (10 minute) presentation on your project. The sections in your presentation should be the same as the sections of your report. Strong emphasis should be put on visualizations in the presentation. Also, you can optionally demo your website during the presentation. 
+Five tobacco/nicotine product categories were defined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two binary indicators were created: ever use (respondents who reported ever using the product), and current use (respondents who reported ever use and current use every day or some days).
 
-In structuring your presentation, make sure to justify to your audience why you made the decisions you did. If you tried/considered multiple methods of data analysis, show some motivation for why you made the eventual decision. All figures that you show should be sufficiently explained to the audience. You should explain why the figures that you show support your conclusions. Design your slides and speech for clarity.
+Demographic variables were categorized into age groups (18–24, 25–34, 35–54, and 55+), sex (male or female), and race & ethnicity (Hispanic, Non-Hispanic White, Non-Hispanic Black, Non-Hispanic Asian, and Non-Hispanic Other).
+
+To account for the NHIS complex sampling design, the following variables were used: Primary Sampling Unit (PSU), Stratification variable (STRATA), and Sampling weights (SAMPWEIGHT).These were used to construct a survey design object using the survey package to find nationally representative prevalence results.
+
+The dataset was restricted to adults aged 18 years and older. Observations with missing values in key variables (age, sex, race/ethnicity, survey design variables, or survey year) were excluded. The cleaned dataset was saved as an RDS file for reproducibility and efficient reuse.
+
+### Data Exploration
+
+Exploratory data analysis was conducted to assess trends in tobacco use over time across demographic groups.
+
+1. Current cigarette use over time
+
+Overall cigarette use prevalence declined rapidly over this period from almost 20% to 10%, while e-cigarette use has increased. Cigar, smokeless tobacco, and pipe use has remained relatively stable over time. The NHIS survey did not ask about e-cigarette use until 2014 and pipe and cigar use until 2015.
+
+```{r, include=FALSE}
+library(ipumsr)
+library(dplyr)
+library(haven)
+library(survey)
+library(srvyr)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(plotly)
+library(shiny)
+NHIS <- readRDS("C:/Users/olivi/OneDrive - Umich/My Vault/4 - Winter 2026/BIOSTAT 620/BIOSTAT620-final-project/NHIS.rds")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+svy_design <- svydesign(
+  ids = ~PSU,
+  strata = ~STRATA,
+  weights = ~SAMPWEIGHT,
+  data = NHIS,
+  nest = TRUE)
+
+vars <- c("smk_current", "ecig_current", "cigar_current",
+          "smkless_current", "pipe_current")
+
+labels <- c(
+  smk_current = "Cigarettes",
+  ecig_current = "E-cigarettes",
+  cigar_current = "Cigars",
+  smkless_current = "Smokeless tobacco",
+  pipe_current = "Pipes")
+
+trend_long <- bind_rows(lapply(vars, function(v) {
+  est <- svyby(
+    as.formula(paste0("~", v)),
+    ~YEAR,
+    svy_design,
+    svymean,
+    na.rm = TRUE)
+
+  data.frame(
+    YEAR = est$YEAR,
+    Product = labels[v],
+    Prevalence = est[[v]] * 100)}))
+
+trend_long$Product <- factor(
+  trend_long$Product,
+  levels = labels)
+
+ggplot(trend_long, aes(x = YEAR, y = Prevalence, color = Product)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Current Tobacco Use by Product",
+    x = "Year",
+    y = "Prevalence (%)",
+    color = "Product") +
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal()
+
+```
+
+2. Current e-cigarette use by age group
+
+Current e-cigarette use prevalence increased over time for every age group except the 55+ age group, where prevalence remained relatively steady. Prevalence of e-cigarette use is higher for each larger age group. E-cigarette use was not included in the NHIS survey until 2014. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+svy_design <- svydesign(
+  ids = ~PSU,
+  strata = ~STRATA,
+  weights = ~SAMPWEIGHT,
+  data = NHIS,
+  nest = TRUE)
+
+ecig_trend <- svyby(
+  ~ecig_current,
+  ~YEAR + agecat,
+  svy_design,
+  svymean,
+  na.rm = TRUE)
+
+ecig_trend <- ecig_trend %>%
+  mutate(
+    Prevalence = ecig_current * 100,
+    agecat = factor(agecat, levels = c("18–24", "25–34", "35–54", "55+")))
+
+ggplot(ecig_trend, aes(x = YEAR, y = Prevalence, color = agecat)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Current E-cigarette Use by Age Group",
+    x = "Year",
+    y = "Prevalence (%)",
+    color = "Age group"
+  ) +
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal()
+
+```
+
+3. Current cigarette use by race & ethnicity
+
+Current cigarette use prevalence has declined over time for every race and ethnicity group. Non-Hispanic Asian and Hispanic individuals are less likely to use cigarettes than other groups. Non-Hispanic Other individuals have been the most likely to use cigarettes overall, but the prevalence of use among this age group has declined and in 2022 was similar to use prevalence in non-Hispanic White and non-Hispanic Black individuals. This group may show varying rates because of a lower sample size.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+svy_design <- svydesign(
+  ids = ~PSU,
+  strata = ~STRATA,
+  weights = ~SAMPWEIGHT,
+  data = NHIS,
+  nest = TRUE)
+
+race_trend <- svyby(
+  ~smk_current,
+  ~YEAR + race_eth,
+  svy_design,
+  svymean,
+  na.rm = TRUE)
+
+race_trend <- race_trend %>%
+  mutate(
+    Prevalence = smk_current * 100,
+    race_eth = factor(
+      race_eth,
+      levels = c(
+        "Non-Hispanic White",
+        "Non-Hispanic Black",
+        "Hispanic",
+        "Non-Hispanic Asian",
+        "Non-Hispanic Other")))
+
+ggplot(race_trend, aes(x = YEAR, y = Prevalence, color = race_eth)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Current Cigarette Use by Race & Ethnicity",
+    x = "Year",
+    y = "Prevalence (%)",
+    color = "Race/Ethnicity"
+  ) +
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal()
+
+```
+
+### Interactive Exploration
+
+A shiny dashboard was created for the main analysis to enable the interactive exploration of tobacco use trends across products and demographic subgroups. Users can select tobacco product types, stratify by age, sex, or race & ethnicity, and compare trends between two specifically-selected groups.

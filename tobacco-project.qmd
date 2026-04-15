@@ -4,17 +4,37 @@ title: "Tobacco Use Project"
 
 ## Introduction
 
-This project analyzes tobacco use trends using NHIS data. Provide background on your dataset and research question. P
+The tobacco and nicotine product landscape is continuously evolving as new products are developed, advertised, and sold to consumers. Tobacco and nicotine products - including cigarettes, electronic cigarettes (e-cigarettes), cigars, smokeless tobacco, and pipes - pose varying health risks to consumers, including lung and oral cancers, cardiovascular risks, and oral health risks. 
+
+The last decade has seen many changes in the use of different tobacco products. Sales of e-cigarettes increased substantially beginning in 2017, especially among young adults. Although promoted as a harm reduction and cigarette cessation tool, there remain concerns that these products may appeal to those that may not otherwise use tobacco or nicotine products, or lead to subsequent cigarette use. More recently, beginning around 2021 and 2022, sales of nicotine pouches (a type of smokeless tobacco product) increased. Different sociodemographic groups of the population may use tobacco and nicotine products at varying rates, leading to disparities in health outcomes by sex, race, and age group. 
+
+The [National Health Interview Survey](https://www.cdc.gov/nchs/nhis/index.html) (NHIS), conducted annually by the National Center for Health Statistics (NCHS) and the Centers for Disease Control and Prevention (CDC), is a nationally representative, cross-sectional survey on the U.S. civilian non-institutionalized population. Using a complex survey design, NHIS collects data on many health behaviors, including measures of tobacco use among different subgroups of the population. Since NHIS is nationally representative, it can be used to estimate prevalence of tobacco and nicotine product use in the U.S. population as a whole by sociodemographic group. This project aims to assess how the prevalence of tobacco and nicotine product use has changed over time in the U.S. from 2012 to 2022 by sex, race and ethnicity, and age group. Monitoring trends in different tobacco and nicotine product use over time is necessary for understanding the changing public health impacts of these products by sociodemograhpic group and informing public health interventions as tobacco and nicotine products continue to evolve.
 
 ## Methods
 
-Briefly discuss how the data was acquired and cleaned, and the tools you used for data exploration (further details should be provided on another page of your website).
+NHIS data is publicly available, and can be accessed on the [CDC Website](https://www.cdc.gov/nchs/nhis/documentation/index.html#:~:text=You%20can%20find%20NHIS%20data%20by%20year,Center%20for%20Health%20Statistics%20Research%20Data%20Center.). NHIS data from 2012-2022 were obtained from a IPUMS harmonized database. 
+
+Five tobacco and nicotine product categories were examined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two use states were defined, derived from tobacco use variables in the dataset. Ever use was defined as respondents who reported ever using the product, while current use was defined as respondents who reported ever use and current use (every day or some days).
+
+Sociodemographic variables were also defined and categorized. Age groups were categorized into 18-24, 25-34, 35-54, and >55 years. Sex was classified as male or female. Race & Ethnicity was classified into Hispanic, non-Hispanic White, non-Hispanic Black, non-Hispanic Asian, and non-Hispanic Other
+
+The analysis accounted for the complex survey design of NHIS by using survey weights, strata, and primary sampling units. The final dataset included the defined tobacco use variables and was restricted to those 18 years or older with non-missing data on age, sex, race/ethnicity, and survey design variables. The final dataset used for this analysis had 596,023 observations. 
 
 ## Results
 
-Provide final, publication-ready tables and figures from your analysis, including at least one interactive graphic. Make separate subsections as needed.
+The results of this analysis was synthesized into one interactive dashboard of tobacco use trends by sociodemographic group from 2012-2022. These results are nationally representative, since they account for complex survey design.
+
+### Trends in Tobacco Use
+
+### Differences by Age
+
+### Differences by Sex
+
+### Differences by Race and Ethnicity
 
 ### Interactive Dashboard
+
+Use the dashboard below to examine ever and current use of various tobacco/nicotine products by sex, age group, and race & ethnicity from 2012-2022, and to compare product use between two selected groups from 2012-2022.
 
 <div style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);">
   <iframe 
@@ -27,4 +47,8 @@ Note: If a plot is not loading for a certain selection criteria, try deleting th
 
 ## Conclusion and Summary
 
-A brief recap where you describe your findings.
+This analysis of NHIS tobacco use data from 2012 to 2022 demonstrates shifts in the prevalence of different tobacco and nicotine use patterns in the United States. While cigarette use has declined, there has been a significant rise in e-cigarette use, especially among younger adults.
+
+Tobacco and nicotine product use is unevenly distributed across sociodemogrpahic groups. *Age-related differences, disparities by sex and race/ethnicity.
+
+A decline in cigarette use is promising for public health, but an increase in alternative tobacco and nicotine products poses new challenges for tobacco control efforts. Targeted interventions accounting for disparities between groups is necessary to reduce tobacco-related harm and subsequent deaths. Continued monitoring of these trends is necessary as the tobacco product landscape continues to change. Future research could examine transitions between products, dual use, and the recent emergence of nicotine pouch products. 
