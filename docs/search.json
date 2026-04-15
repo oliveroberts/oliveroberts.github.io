@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "tobacco-project.html",
+    "href": "tobacco-project.html",
+    "title": "Tobacco Use Project",
+    "section": "",
+    "text": "This project analyzes tobacco use trends using NHIS data. Provide background on your dataset and research question."
+  },
+  {
+    "objectID": "tobacco-project.html#introduction",
+    "href": "tobacco-project.html#introduction",
+    "title": "Tobacco Use Project",
+    "section": "",
+    "text": "This project analyzes tobacco use trends using NHIS data. Provide background on your dataset and research question."
+  },
+  {
+    "objectID": "tobacco-project.html#methods",
+    "href": "tobacco-project.html#methods",
+    "title": "Tobacco Use Project",
+    "section": "Methods",
+    "text": "Methods\nBriefly discuss how the data was acquired and cleaned, and the tools you used for data exploration (further details should be provided on another page of your website)."
+  },
+  {
+    "objectID": "tobacco-project.html#results",
+    "href": "tobacco-project.html#results",
+    "title": "Tobacco Use Project",
+    "section": "Results",
+    "text": "Results\nProvide final, publication-ready tables and figures from your analysis, including at least one interactive graphic. Make separate subsections as needed.\n\nInteractive Dashboard\n\n \n\nNote: If a plot is not loading for a certain selection criteria, try deleting the Nicotine/Product use criteria and adding it again. This dashboard can also be found separately on this website."
+  },
+  {
+    "objectID": "tobacco-project.html#conclusion-and-summary",
+    "href": "tobacco-project.html#conclusion-and-summary",
+    "title": "Tobacco Use Project",
+    "section": "Conclusion and Summary",
+    "text": "Conclusion and Summary\nA brief recap where you describe your findings."
+  },
+  {
+    "objectID": "about-data.html",
+    "href": "about-data.html",
+    "title": "About the Data",
+    "section": "",
+    "text": "Describe the raw data in detail and every step you took to prepare it for your analysis. Describe how the data was acquired, processed, and explored. This is also where you should include any exploratory plots.\nIn addition to submitting a written report, you will prepare a brief (10 minute) presentation on your project. The sections in your presentation should be the same as the sections of your report. Strong emphasis should be put on visualizations in the presentation. Also, you can optionally demo your website during the presentation.\nIn structuring your presentation, make sure to justify to your audience why you made the decisions you did. If you tried/considered multiple methods of data analysis, show some motivation for why you made the eventual decision. All figures that you show should be sufficiently explained to the audience. You should explain why the figures that you show support your conclusions. Design your slides and speech for clarity."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Olivia Kaitlyn Roberts",
