@@ -18,7 +18,7 @@ The dataset was restricted to adults aged 18 years and older. Observations with 
 
 Exploratory data analysis was conducted to assess trends in tobacco use over time across demographic groups.
 
-1. Current cigarette use over time
+1.  Current cigarette use over time
 
 Overall cigarette use prevalence declined rapidly over this period from almost 20% to 10%, while e-cigarette use has increased. Cigar, smokeless tobacco, and pipe use has remained relatively stable over time. The NHIS survey did not ask about e-cigarette use until 2014 and pipe and cigar use until 2015.
 
@@ -87,9 +87,9 @@ ggplot(trend_long, aes(x = YEAR, y = Prevalence, color = Product)) +
 
 ```
 
-2. Current e-cigarette use by age group
+2.  Current e-cigarette use by age group
 
-Current e-cigarette use prevalence increased over time for every age group except the 55+ age group, where prevalence remained relatively steady. Prevalence of e-cigarette use is higher for each larger age group. E-cigarette use was not included in the NHIS survey until 2014. 
+Current e-cigarette use prevalence increased over time for every age group except the 55+ age group, where prevalence remained relatively steady. Prevalence of e-cigarette use is higher for each larger age group. E-cigarette use was not included in the NHIS survey until 2014.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -126,7 +126,7 @@ ggplot(ecig_trend, aes(x = YEAR, y = Prevalence, color = agecat)) +
 
 ```
 
-3. Current cigarette use by race & ethnicity
+3.  Current cigarette use by race & ethnicity
 
 Current cigarette use prevalence has declined over time for every race and ethnicity group. Non-Hispanic Asian and Hispanic individuals are less likely to use cigarettes than other groups. Non-Hispanic Other individuals have been the most likely to use cigarettes overall, but the prevalence of use among this age group has declined and in 2022 was similar to use prevalence in non-Hispanic White and non-Hispanic Black individuals. This group may show varying rates because of a lower sample size.
 
@@ -175,3 +175,315 @@ ggplot(race_trend, aes(x = YEAR, y = Prevalence, color = race_eth)) +
 ### Interactive Exploration
 
 A shiny dashboard was created for the main analysis to enable the interactive exploration of tobacco use trends across products and demographic subgroups. Users can select tobacco product types, stratify by age, sex, or race & ethnicity, and compare trends between two specifically-selected groups.
+
+### Full Workflow
+
+See below for the data cleaning and variable creation process for the NHIS data.
+
+```{r, eval=FALSE}
+
+# cigarette use
+NHIS$smk_ever <- ifelse(NHIS$SMOKEV == 2, 1,  
+                          ifelse(NHIS$SMOKEV == 1, 0, NA))
+NHIS$smk_current <- ifelse(
+  NHIS$SMOKEV == 2 & NHIS$SMOKFREQNOW %in% c(2, 3), 1,
+  ifelse(NHIS$SMOKEV == 1 | (NHIS$SMOKEV == 2 & NHIS$SMOKFREQNOW == 1),0,NA))
+
+# e-cigarette use
+NHIS$ecig_ever <- ifelse(NHIS$ECIGEV == 2, 1, 
+                             ifelse(NHIS$ECIGEV == 1, 0, NA))
+NHIS$ecig_current <- ifelse(NHIS$ECIGEV == 2 & NHIS$ECIGED %in% c(1,2), 1, 
+                                ifelse(NHIS$ECIGEV == 1 | 
+                                         NHIS$ECIGEV == 2 & NHIS$ECIGED == 3, 0, NA))
+
+# cigar use
+NHIS$cigar_ever <- ifelse(NHIS$CIGAREV == 2, 1,
+                              ifelse(NHIS$CIGAREV == 1, 0, NA))
+NHIS$cigar_current <- ifelse(
+  NHIS$CIGAREV == 2 & NHIS$CIGARFREQNOW %in% c(1, 2), 1,
+  ifelse(
+    NHIS$CIGAREV == 1 | (NHIS$CIGAREV == 2 & NHIS$CIGARFREQNOW == 3),
+    0,
+    NA))
+
+# smokeless tobacco use
+NHIS$smkless_ever <- ifelse(NHIS$SMKLSEV == 2, 1, 
+                                ifelse(NHIS$SMKLSEV == 1, 0, NA))
+NHIS$smkless_current <- ifelse(NHIS$SMKLSEV == 2 & NHIS$SMKLSFREQNOW %in% c(1,2), 1, 
+                                   ifelse(NHIS$SMKLSEV == 1 | 
+                                            NHIS$SMKLSEV == 2 & NHIS$SMKLSFREQNOW == 4, 0, NA))
+
+# pipe use
+NHIS$pipe_ever <- ifelse(NHIS$PIPEV == 2, 1, 
+                             ifelse(NHIS$PIPEV == 1, 0, NA))
+NHIS$pipe_current <- ifelse(NHIS$PIPEV == 2 & NHIS$PIPEFREQNOW %in% c(1,2), 1, 
+                                ifelse(NHIS$PIPEV == 1 | 
+                                         NHIS$PIPEV == 2 & NHIS$PIPEFREQNOW == 3, 0, NA))
+
+# race & ethnicity
+NHIS$race_eth <- ifelse(NHIS$HISPETH %in% c(20,60), "Hispanic",  # Hispanic
+                             ifelse(NHIS$HISPETH == 10 & NHIS$RACENEW == 100, "NHW",  # non-Hispanic White
+                                    ifelse(NHIS$HISPETH == 10 & NHIS$RACENEW == 200, "NHB",  # non-Hispanic Black
+                                           ifelse(NHIS$HISPETH == 10 & NHIS$RACENEW == 400, "NHA",  # non-Hispanic Asian
+                                                  ifelse(NHIS$HISPETH == 10 & NHIS$RACENEW %in% c(300, 510, 542), "NHO", NA)))))  # non-Hispanic Other
+NHIS$race_eth <- factor(NHIS$race_eth, 
+                            levels = c("Hispanic","NHA", "NHB", "NHO", "NHW"))
+
+
+options(survey.lonely.psu = "adjust")
+
+NHIS$sexcat <- dplyr::case_when(
+  NHIS$SEX == 1 ~ "Male",
+  NHIS$SEX == 2 ~ "Female",
+  TRUE ~ NA_character_)
+
+NHIS$agecat <- dplyr::case_when(
+  NHIS$AGE >= 18 & NHIS$AGE <= 24 ~ "18–24",
+  NHIS$AGE >= 25 & NHIS$AGE <= 34 ~ "25–34",
+  NHIS$AGE >= 35 & NHIS$AGE <= 54 ~ "35–54",
+  NHIS$AGE >= 55 ~ "55+",
+  TRUE ~ NA_character_)
+
+NHIS$race_eth <- dplyr::recode(
+  NHIS$race_eth,
+  "Hispanic" = "Hispanic",
+  "NHA" = "Non-Hispanic Asian",
+  "NHB" = "Non-Hispanic Black",
+  "NHO" = "Non-Hispanic Other",
+  "NHW" = "Non-Hispanic White",
+  .default = NA_character_)
+
+NHIS <- NHIS %>% 
+  select(YEAR, agecat, sexcat, race_eth, smk_current, ecig_current,
+         cigar_current, smkless_current, pipe_current,
+         smk_ever, ecig_ever, cigar_ever, smkless_ever, pipe_ever,
+         PSU, STRATA, SAMPWEIGHT)
+
+NHIS <- NHIS %>%  filter(
+  !is.na(YEAR),
+  !is.na(agecat),
+  !is.na(sexcat),
+  !is.na(race_eth),
+  !is.na(PSU),
+  !is.na(STRATA),
+  !is.na(SAMPWEIGHT))
+
+saveRDS(NHIS, "NHIS.rds")
+
+NHIS <- NHIS |>
+  sample_n(50000)
+
+saveRDS(NHIS, "NHIS_reduced.rds")
+
+```
+
+See below for the code used to create the interactive visualization.
+
+```{r, eval=FALSE}
+
+NHIS <- readRDS("NHIS.rds")
+
+sex_choices  <- sort(unique(na.omit(NHIS$sexcat)))
+age_choices  <- sort(unique(na.omit(NHIS$agecat)))
+race_choices <- sort(unique(na.omit(NHIS$race_eth)))
+
+svy_design <- svydesign(
+  id = ~PSU,
+  strata = ~STRATA,
+  weight = ~SAMPWEIGHT,
+  data = NHIS,
+  nest = TRUE)
+
+product_labels <- c(
+  smk_current = "Current Cigarette Use",
+  smk_ever = "Ever Cigarette Use",
+  ecig_current = "Current E-Cigarette Use",
+  ecig_ever = "Ever E-Cigarette Use",
+  cigar_current = "Current Cigar Use",
+  cigar_ever = "Ever Cigar Use",
+  smkless_current = "Current Smokeless Tobacco Use",
+  smkless_ever = "Ever Smokeless Tobacco Use",
+  pipe_current = "Current Pipe Use",
+  pipe_ever = "Ever Pipe Use")
+
+make_label <- function(product, subgroup) {
+  paste0(product, ", ", subgroup)}
+
+clean_text <- function(x) {
+  x <- as.character(x)
+  x <- gsub("\\(|\\)", "", x)
+  x <- gsub(",\\s*1$", "", x)
+  trimws(x)}
+
+ui <- navbarPage(
+  "NHIS Tobacco Dashboard",
+  tabPanel("Subgroup Trends",
+           sidebarLayout(
+             sidebarPanel(
+               selectInput("product1",
+                           "Tobacco/Nicotine Product Use",
+                           choices = setNames(names(product_labels), product_labels),
+                           multiple = TRUE),
+               selectInput("group",
+                           "Stratify by",
+                           choices = c(
+                             "Race" = "race_eth",
+                             "Sex" = "sexcat",
+                             "Age" = "agecat")),
+               uiOutput("subgroups_ui")),
+             mainPanel(
+               plotlyOutput("plot1", height = "600px")))),
+  tabPanel("Group Comparison",
+           sidebarLayout(
+             sidebarPanel(
+               selectInput("product2",
+                           "Tobacco/Nicotine Product Use",
+                           choices = setNames(names(product_labels), product_labels),
+                           multiple = TRUE),
+               h4("Group A"),
+               selectInput("race_A", "Race",
+                           race_choices,
+                           multiple = TRUE),
+               selectInput("sex_A", "Sex",
+                           sex_choices,
+                           multiple = TRUE),
+               selectInput("age_A", "Age",
+                           age_choices,
+                           multiple = TRUE),
+               hr(),
+               h4("Group B"),
+               selectInput("race_B", "Race",
+                           race_choices,
+                           multiple = TRUE),
+               selectInput("sex_B", "Sex",
+                           sex_choices,
+                           multiple = TRUE),
+               selectInput("age_B", "Age",
+                           age_choices,
+                           multiple = TRUE)),
+             mainPanel(
+               plotlyOutput("plot2", height = "600px")))))
+
+server <- function(input, output) {
+  output$subgroups_ui <- renderUI({
+    req(input$group)
+    choices <- switch(input$group,
+                      race_eth = race_choices,
+                      sexcat = sex_choices,
+                      agecat = age_choices)
+    selectInput("subgroups",
+                "Select Groups",
+                choices = choices,
+                multiple = TRUE,
+                selected = choices)})
+  
+  data1 <- reactive({
+    req(input$product1, input$subgroups)
+    group_var <- input$group
+    design_sub <- subset(
+      svy_design,
+      get(group_var) %in% input$subgroups)
+    bind_rows(lapply(input$product1, function(var) {
+      df <- svyby(
+        as.formula(paste0("~", var)),
+        as.formula(paste0("~YEAR + ", group_var)),
+        design_sub,
+        svymean,
+        vartype = "ci",
+        na.rm = TRUE)
+      
+      df$YEAR <- as.numeric(as.character(df$YEAR))
+      subgroup <- clean_text(as.character(df[[group_var]]))
+      df <- df %>%
+        mutate(
+          Prevalence = .data[[var]] * 100,
+          CI_Lower = ci_l * 100,
+          CI_Upper = ci_u * 100,
+          
+          Product = product_labels[[var]],
+          Subgroup = subgroup,
+          
+          Label = make_label(Product, Subgroup)) %>%
+        mutate(Label = clean_text(Label))
+      df}))
+  })
+  
+  output$plot1 <- renderPlotly({
+    df <- data1()
+    ggplotly(
+      ggplot(df,
+             aes(x = YEAR, y = Prevalence,
+                 color = Label, group = Label)) +
+        
+        geom_line(linewidth = 1) +
+        geom_point() +
+        
+        geom_ribbon(aes(ymin = CI_Lower,
+                        ymax = CI_Upper,
+                        fill = Label),
+                    alpha = 0.15,
+                    color = NA,
+                    show.legend = FALSE) +
+        labs(x = "Year", y = "Prevalence %") +
+        theme_minimal(base_size = 14))})
+  
+  data2 <- reactive({
+    req(input$product2)
+    compute_group <- function(race, sex, age) {
+      design_sub <- subset(
+        svy_design,
+        race_eth %in% race &
+          sexcat %in% sex &
+          agecat %in% age)
+      bind_rows(lapply(input$product2, function(var) {
+        df <- svyby(
+          as.formula(paste0("~", var)),
+          ~YEAR,
+          design_sub,
+          svymean,
+          vartype = "ci",
+          na.rm = TRUE)
+        df$YEAR <- as.numeric(as.character(df$YEAR))
+        subgroup <- paste(race, sex, age, collapse = " ")
+        subgroup <- clean_text(subgroup)
+        
+        df <- df %>%
+          mutate(
+            Prevalence = .data[[var]] * 100,
+            CI_Lower = ci_l * 100,
+            CI_Upper = ci_u * 100,
+            
+            Product = product_labels[[var]],
+            Label = make_label(Product, subgroup)) %>%
+          mutate(Label = clean_text(Label))
+        df}))}
+    bind_rows(
+      compute_group(input$race_A, input$sex_A, input$age_A),
+      compute_group(input$race_B, input$sex_B, input$age_B))
+  })
+  
+  output$plot2 <- renderPlotly({
+    
+    df <- data2()
+    ggplotly(
+      ggplot(df,
+             aes(x = YEAR, y = Prevalence,
+                 color = Label, group = Label)) +
+        
+        geom_line(linewidth = 1) +
+        geom_point() +
+        
+        geom_ribbon(aes(ymin = CI_Lower,
+                        ymax = CI_Upper,
+                        fill = Label),
+                    alpha = 0.15,
+                    color = NA,
+                    show.legend = FALSE) +
+        
+        labs(x = "Year", y = "Prevalence %") +
+        theme_minimal(base_size = 14))})
+}
+
+shinyApp(ui, server)
+
+```

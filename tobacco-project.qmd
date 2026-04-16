@@ -4,21 +4,21 @@ title: "Tobacco Use Project"
 
 ## Introduction
 
-The tobacco and nicotine product landscape is continuously evolving as new products are developed, advertised, and sold to consumers. Tobacco and nicotine products - including cigarettes, electronic cigarettes (e-cigarettes), cigars, smokeless tobacco, and pipes - pose varying health risks to consumers, including lung and oral cancers, cardiovascular risks, and oral health risks. 
+The tobacco and nicotine product landscape is continuously evolving as new products are developed, advertised, and sold to consumers. Tobacco and nicotine products - including cigarettes, electronic cigarettes (e-cigarettes), cigars, smokeless tobacco, and pipes - pose varying health risks to consumers, including lung and oral cancers, cardiovascular risks, and oral health risks.
 
-The last decade has seen many changes in the use of different tobacco products. Sales of e-cigarettes increased substantially beginning in 2017, especially among young adults. Although promoted as a harm reduction and cigarette cessation tool, there remain concerns that these products may appeal to those that may not otherwise use tobacco or nicotine products, or lead to subsequent cigarette use. More recently, beginning around 2021 and 2022, sales of nicotine pouches (a type of smokeless tobacco product) increased. Different sociodemographic groups of the population may use tobacco and nicotine products at varying rates, leading to disparities in health outcomes by sex, race, and age group. 
+The last decade has seen many changes in the use of different tobacco products. Sales of e-cigarettes increased substantially beginning in 2017, especially among young adults. Although promoted as a harm reduction and cigarette cessation tool, there remain concerns that these products may appeal to those that may not otherwise use tobacco or nicotine products, or lead to subsequent cigarette use. More recently, beginning around 2021 and 2022, sales of nicotine pouches (a type of smokeless tobacco product) increased. Different sociodemographic groups of the population may use tobacco and nicotine products at varying rates, leading to disparities in health outcomes by sex, race, and age group.
 
 The [National Health Interview Survey](https://www.cdc.gov/nchs/nhis/index.html) (NHIS), conducted annually by the National Center for Health Statistics (NCHS) and the Centers for Disease Control and Prevention (CDC), is a nationally representative, cross-sectional survey on the U.S. civilian non-institutionalized population. Using a complex survey design, NHIS collects data on many health behaviors, including measures of tobacco use among different subgroups of the population. Since NHIS is nationally representative, it can be used to estimate prevalence of tobacco and nicotine product use in the U.S. population as a whole by sociodemographic group. This project aims to assess how the prevalence of tobacco and nicotine product use has changed over time in the U.S. from 2012 to 2022 by sex, race and ethnicity, and age group. Monitoring trends in different tobacco and nicotine product use over time is necessary for understanding the changing public health impacts of these products by sociodemograhpic group and informing public health interventions as tobacco and nicotine products continue to evolve.
 
 ## Methods
 
-NHIS data is publicly available, and can be accessed on the [CDC Website](https://www.cdc.gov/nchs/nhis/documentation/index.html#:~:text=You%20can%20find%20NHIS%20data%20by%20year,Center%20for%20Health%20Statistics%20Research%20Data%20Center.). NHIS data from 2012-2022 were obtained from a IPUMS harmonized database. 
+NHIS data is publicly available, and can be accessed on the [CDC Website](https://www.cdc.gov/nchs/nhis/documentation/index.html#:~:text=You%20can%20find%20NHIS%20data%20by%20year,Center%20for%20Health%20Statistics%20Research%20Data%20Center.). NHIS data from 2012-2022 were obtained from a IPUMS harmonized database.
 
 Five tobacco and nicotine product categories were examined: cigarettes, e-cigarettes, cigars, smokeless tobacco, and pipes. For each product, two use states were defined, derived from tobacco use variables in the dataset. Ever use was defined as respondents who reported ever using the product, while current use was defined as respondents who reported ever use and current use (every day or some days). Current use of cigarettes or cigars only includes participants who used 100 or more cigarettes or cigars in their lifetime, respectively, as is standard in tobacco analyses.
 
-Sociodemographic variables were also defined and categorized. Age groups were categorized into 18-24, 25-34, 35-54, and >55 years. Sex was classified as male or female. Race & Ethnicity was classified into Hispanic, non-Hispanic White, non-Hispanic Black, non-Hispanic Asian, and non-Hispanic Other
+Sociodemographic variables were also defined and categorized. Age groups were categorized into 18-24, 25-34, 35-54, and \>55 years. Sex was classified as male or female. Race & Ethnicity was classified into Hispanic, non-Hispanic White, non-Hispanic Black, non-Hispanic Asian, and non-Hispanic Other
 
-The analysis accounted for the complex survey design of NHIS by using survey weights, strata, and primary sampling units. The final dataset included the defined tobacco use variables and was restricted to those 18 years or older with non-missing data on age, sex, race/ethnicity, and survey design variables. The final dataset used for this analysis had 596,023 observations. 
+The analysis accounted for the complex survey design of NHIS by using survey weights, strata, and primary sampling units. The final dataset included the defined tobacco use variables and was restricted to those 18 years or older with non-missing data on age, sex, race/ethnicity, and survey design variables. The final dataset used for this analysis had 596,023 observations.
 
 ## Results
 
@@ -26,17 +26,17 @@ The results of this analysis was synthesized into one interactive dashboard of t
 
 ### Trends in Tobacco Use
 
-Overall from 2012-2022, current cigarette use prevalence declined from almost 20% to about 10%. E-cigarette use increased from about 4% to 7%. Cigar use remained relatively steady at about 4%, smokeless tobacco remained at about 2.5%, and pipe remained at about 1-2%. 
+Overall from 2012-2022, current cigarette use prevalence declined from almost 20% to about 10%. E-cigarette use increased from about 4% to 7%. Cigar use remained relatively steady at about 4%, smokeless tobacco remained at about 2.5%, and pipe remained at about 1-2%.
 
 ### Differences by Age
 
-Tobacco and nicotine product use trends vary over time by age group. In 2012, individuals 55 years or older were the least likely to use cigarettes, but this prevalence has not declined much over time. Cigarette use for younger age groups had a higher prevalence in 2012 but declined more steeply over time, especially for the 18-24 year old group, which declined from close to 20% to less than 5%. Some of these trends may have been impacted by the use of e-cigarettes, which have been rising in younger age groups. 
+Tobacco and nicotine product use trends vary over time by age group. In 2012, individuals 55 years or older were the least likely to use cigarettes, but this prevalence has not declined much over time. Cigarette use for younger age groups had a higher prevalence in 2012 but declined more steeply over time, especially for the 18-24 year old group, which declined from close to 20% to less than 5%. Some of these trends may have been impacted by the use of e-cigarettes, which have been rising in younger age groups.
 
 NHIS began asking about e-cigarettes in 2014. Since 2014, e-cigarette use has increased in every age group, except the 55+ age group, which has seen steady prevalence over time. The prevalence among 18-24-year-olds increased from about 5% in 2014 to almost 14% in 2022. Each subsequently older age group is less likely to use e-cigarettes.
 
-Cigar use is less common with wider confidence intervals, so specific trends are a bit harder to discern. Cigar use trends by age have remained relatively steady over time. Interestingly, the 25-34-year old age group has the highest prevalence of cigar use, followed by 35-54-year olds. 18-24-year olds and 55+ year-olds have similar rates in recent years. 
+Cigar use is less common with wider confidence intervals, so specific trends are a bit harder to discern. Cigar use trends by age have remained relatively steady over time. Interestingly, the 25-34-year old age group has the highest prevalence of cigar use, followed by 35-54-year olds. 18-24-year olds and 55+ year-olds have similar rates in recent years.
 
-Smokeless tobacco use was the highest for the 18-24-year old age group in 2012 at almost 4%, but this decreased significantly over time. By 2022, 18-24-year olds were the less likely to use smokeless tobacco at about 1%, while other age groups had similar rates over time. 
+Smokeless tobacco use was the highest for the 18-24-year old age group in 2012 at almost 4%, but this decreased significantly over time. By 2022, 18-24-year olds were the less likely to use smokeless tobacco at about 1%, while other age groups had similar rates over time.
 
 Pipe use decreased in the 18-24 year old age group over time from almost 4% to about 1%, but other groups remained steady over time.
 
@@ -48,7 +48,7 @@ Men were consistently more likely to use every type of tobacco and nicotine prod
 
 Current cigarette use prevalence has declined over time for every race and ethnicity group. Non-Hispanic Asian and Hispanic individuals are less likely to use cigarettes than other groups. Non-Hispanic Other individuals have been the most likely to use cigarettes overall, but the prevalence of use among this age group has declined and in 2022 was similar to use prevalence in non-Hispanic White and non-Hispanic Black individuals. The non-Hispanic other group has less observations and wider confidence intervals, so estimates may be less accurate in this group.
 
-E-cigarette use has increased for every race and ethnicity group, with non-Hispanic Other and non-Hispanic White individuals the most likely to use e-cigarettes. However, there has been a steep increase in e-cigarette use among non-Hispanic black individuals since about 2020. 
+E-cigarette use has increased for every race and ethnicity group, with non-Hispanic Other and non-Hispanic White individuals the most likely to use e-cigarettes. However, there has been a steep increase in e-cigarette use among non-Hispanic black individuals since about 2020.
 
 Non-Hispanic Black individuals are the most likely to use cigars, at over 6% in recent years. Non-hispanic Asian individuals are the least likely to use cigars, followed by Hispanic individuals.
 
@@ -60,12 +60,11 @@ Differences in pipe use prevalence by race and ethnicty are a bit harder to disc
 
 Use the dashboard below to examine ever and current use of various tobacco/nicotine products by sex, age group, and race & ethnicity from 2012-2022, and to compare product use between two selected groups from 2012-2022. Note that the data for this integrated dashboard has been subset to 50,000 observations to improve performance.
 
-<div style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);">
-  <iframe 
+::: {style="width: 90vw; position: relative; left: 50%; transform: translateX(-50%);"}
+<iframe 
     src="https://oliveroberts.shinyapps.io/biostat620-final-project/"
-    style="width: 100%; height: 90vh; border: none;">
-  </iframe>
-</div>
+    style="width: 100%; height: 90vh; border: none;"> </iframe>
+:::
 
 Note: If a plot is not loading for a certain selection criteria, try deleting the Nicotine/Product use criteria and adding it again. This dashboard can also be found separately on [this website](https://oliveroberts.shinyapps.io/biostat620-final-project/).
 
@@ -75,4 +74,4 @@ This analysis of NHIS tobacco use data from 2012 to 2022 demonstrates shifts in 
 
 Tobacco and nicotine product use is unevenly distributed across sociodemogrpahic groups. Over time, use of cigarettes, pipes, smokeless tobacco, and cigars has decreased for younger age groups, while e-cigarette use increased in these groups. Men were consistently more likely to use all tobacco and nicotine products than women. Non-Hispanic Asian and Hispanic individuals are less likely to use cigarettes, non-Hispanic Other and non-Hispanic White individuals are the most likely to use e-cigarettes, non-Hispanic Black individuals are the most likely to use cigars, non-Hispanic White and non-Hispanic other individuals are the most likely to use smokeless tobacco, and non-Hispanic Black and non-Hispanic Other individuals are more likely to use pipes.
 
-A decline in cigarette use is promising for public health, but an increase in e-cigarette use poses a new challenge for tobacco control efforts. Targeted interventions accounting for disparities between groups is necessary to reduce tobacco-related harm and subsequent deaths. Continued monitoring of these trends is necessary as the tobacco product landscape continues to change. Future research could examine transitions between different products, dual use (or poly use) of products, and the recent emergence of nicotine pouch products. 
+A decline in cigarette use is promising for public health, but an increase in e-cigarette use poses a new challenge for tobacco control efforts. Targeted interventions accounting for disparities between groups is necessary to reduce tobacco-related harm and subsequent deaths. Continued monitoring of these trends is necessary as the tobacco product landscape continues to change. Future research could examine transitions between different products, dual use (or poly use) of products, and the recent emergence of nicotine pouch products.
