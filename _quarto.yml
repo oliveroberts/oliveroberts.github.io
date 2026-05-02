@@ -11,12 +11,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-        
-      - href: tobacco-project.qmd
-        text: Tobacco Use Project
-        
-      - href: about-data.qmd
-        text: About the Data
 
 format:
   html:
